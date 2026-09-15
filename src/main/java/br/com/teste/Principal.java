@@ -26,25 +26,19 @@ public class Principal {
 
     public static void main(String[] args) {
 
-        // 3.1 - Inserir todos os funcionarios, na mesma ordem e informacoes da tabela.
         List<Funcionario> funcionarios = criarFuncionarios();
 
-        // 3.2 - Remover o funcionario "Joao" da lista.
         funcionarios.removeIf(funcionario -> funcionario.getNome().equals("João"));
 
-        // 3.3 - Imprimir todos os funcionarios com todas as suas informacoes.
         titulo("3.3 - Lista de funcionarios");
         funcionarios.forEach(funcionario -> System.out.println(formatar(funcionario)));
 
-        // 3.4 - Aplicar 10% de aumento e atualizar a lista.
         aplicarAumento(funcionarios, PERCENTUAL_AUMENTO);
         titulo("3.4 - Funcionarios apos 10% de aumento");
         funcionarios.forEach(funcionario -> System.out.println(formatar(funcionario)));
 
-        // 3.5 - Agrupar os funcionarios por funcao em um Map<String, List<Funcionario>>.
         Map<String, List<Funcionario>> funcionariosPorFuncao = agruparPorFuncao(funcionarios);
 
-        // 3.6 - Imprimir os funcionarios agrupados por funcao.
         titulo("3.6 - Funcionarios agrupados por funcao");
         funcionariosPorFuncao.forEach((funcao, lista) -> {
             System.out.println(funcao);
@@ -71,13 +65,11 @@ public class Principal {
                 funcionario.getNome(),
                 calcularIdade(funcionario.getDataNascimento())));
 
-        // 3.10 - Imprimir a lista de funcionarios por ordem alfabetica.
         titulo("3.10 - Funcionarios em ordem alfabetica");
         funcionarios.stream()
                 .sorted(Comparator.comparing(Funcionario::getNome))
                 .forEach(funcionario -> System.out.println(formatar(funcionario)));
 
-        // 3.11 - Imprimir o total dos salarios dos funcionarios.
         titulo("3.11 - Total dos salarios");
         BigDecimal totalSalarios = funcionarios.stream()
                 .map(Funcionario::getSalario)
@@ -85,7 +77,6 @@ public class Principal {
 
         System.out.println("Total: R$ " + FORMATO_NUMERO.format(totalSalarios));
 
-        // 3.12 - Imprimir quantos salarios minimos ganha cada funcionario.
         titulo("3.12 - Salarios minimos por funcionario (minimo = R$ "
                 + FORMATO_NUMERO.format(SALARIO_MINIMO) + ")");
         funcionarios.forEach(funcionario -> {
